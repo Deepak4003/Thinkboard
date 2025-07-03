@@ -2,8 +2,12 @@ import express from "express";
 
 const app = express();
 app.get("/api/notes",(req,res)=>{
-    //delete a note
-    res.send("you got 5 notes");
+    //send the notes
+    res.status(200).send("you got 5 notes");
+})
+app.post("/api/notes",(req,res)=>{
+    //creat the notes
+    res.status(201).send("created a note successfully");
 })
 
 app.listen(5001,() => {
