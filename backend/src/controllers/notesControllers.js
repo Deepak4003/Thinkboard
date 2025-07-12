@@ -10,6 +10,17 @@ export async function getAllNotes(_, res) {
   }
 }
 
+export async function getNoteByTitle(req, res) {
+  try {
+    const note = await Note.findOne().sort({ createdAt: -1});
+    if (!note) return res.status(404).json({ message: "Note not found!" });
+    res.json(note);
+  } catch (error) {
+    console.error("Error in getNoteByTitle controller", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
+
 export async function getNoteById(req, res) {
   try {
     const note = await Note.findById(req.params.id);
@@ -53,6 +64,7 @@ export async function updateNote(req, res) {
     res.status(500).json({ message: "Internal server error" });
   }
 }
+
 
 export async function deleteNote(req, res) {
   try {
