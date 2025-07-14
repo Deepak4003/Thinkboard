@@ -14,6 +14,7 @@ connectDB();
 
 app.use(express.json()); // middleware
 app.use(rateLimiter);
+app
 
 app.use((req, res, next) => {
     console.log(`Request Method: ${req.method}, Request URL: ${req.url}`);
